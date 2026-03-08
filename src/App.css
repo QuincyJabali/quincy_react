@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.section1 {
+  padding: '20px';
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section2 {
+  margin-bottom: 20px;
+}
+
+.nametag {
+  margin: 5px;
+}
+.scoretag{
+  margin: 5px;
+}
+
+.display{
+  margin-Bottom: 20px;
+  padding: 10px; 
+  background-color: #61dafb;
+  color: black;
+}
+.mytable {
+  width: 100%;
+  text-align: left;
+}
