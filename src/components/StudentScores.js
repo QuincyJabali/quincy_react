@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
 
 const StudentScores = () => {
-  // State for input fields and the list of students
   const [name, setName] = useState('');
   const [score, setScore] = useState('');
   const [students, setStudents] = useState([]);
 
-  // Function to add a new student
+  
   const addStudent = () => {
     if (name.trim() === '' || score === '') 
         return;
 
     const newStudent = {
-      id: Date.now(), // Unique ID for keys and deletion
+      id: Date.now(), 
       name: name,
       score: parseFloat(score),
     };
 
     setStudents([...students, newStudent]);
-    setName(''); // Clear inputs
+    setName(''); 
     setScore('');
   };
 
-  // Function to remove a student (Optional requirement)
+  
   const deleteStudent = (id) => {
     setStudents(students.filter((students) => students.id !== id));
   };
 
-  // Derived data calculations
+ 
   const totalStudents = students.length;
 
   let sum = 0 
@@ -47,7 +46,7 @@ const StudentScores = () => {
   ? students.reduce((prev,current) => (prev.score > current.score ? prev : current))
   : null;
 
-  // Helper for conditional styling (Optional requirement)
+  
   const scoreColor = (score) => {
     if (score >= 80) return 'green';
     if (score >= 50) return 'orange';
@@ -58,26 +57,26 @@ const StudentScores = () => {
     <div className='section1'>
       <h1>Student Score Sheet</h1>
 
-      {/* Input Section */}
+     
       <div className='section2'>
         <input className='nametag' type="text" placeholder="Student Name" value={name}  onChange={(e) => setName(e.target.value)} /> 
         <input className='scoretag' type="number" placeholder="Score" value={score} onChange={(e) => setScore(e.target.value)}  />
         <button onClick={addStudent}>Add Student</button>
       </div>
 
-      {/* Conditional Rendering for Empty State */}
+      
       {students.length === 0 ? (
         <p>No students added yet.</p>
       ) : (
         <>
-          {/* Summary Stats */}
+         
           <div className='display'>
             <p><strong>Total Students:</strong> {totalStudents}</p>
             <p><strong>Class Average:</strong> {averageScore}</p>
             <p><b>Top Student:</b>{topStudent.name}({topStudent.score})</p>
           </div>
 
-          {/* Student List */}
+         
           <table className='mytable' border="1" >
             <thead>
               <tr>
