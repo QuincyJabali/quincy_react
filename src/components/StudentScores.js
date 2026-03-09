@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+// this is my new project
 const StudentScores = () => {
   const [name, setName] = useState('');
   const [score, setScore] = useState('');
