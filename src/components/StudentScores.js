@@ -5,28 +5,33 @@ const StudentScores = () => {
   const [score, setScore] = useState('');
   const [students, setStudents] = useState([]);
 
-  // Function to add a new student
+  
+ 
   const addStudent = () => {
     if (name.trim() === '' || score === '') 
         return;
 
     const newStudent = {
-      id: Date.now(), // Unique ID for keys and deletion
+      id: Date.now(), 
+      id: Date.now(),
       name: name,
       score: parseFloat(score),
     };
 
     setStudents([...students, newStudent]);
     setName(''); 
+    setName(''); 
     setScore('');
   };
 
+  
   
   const deleteStudent = (id) => {
     setStudents(students.filter((students) => students.id !== id));
   };
 
-  // Derived data calculations
+ 
+  
   const totalStudents = students.length;
 
   let sum = 0 
@@ -42,11 +47,22 @@ const StudentScores = () => {
     averageScore = 0
   }
 
-  const topStudent = totalStudents > 0
-  ? students.reduce((prev,current) => (prev.score > current.score ? prev : current))
-  : null;
+ 
 
-  // Helper for conditional styling (Optional requirement)
+  
+
+  
+  let topStudent = null;
+  if (students.length > 0) {
+    topStudent = students[0];
+    for (let i = 1; i < students.length; i++) {
+      if (students[i].score > topStudent.score) {
+        topStudent = students[i];
+      }
+    }
+  }
+
+  
   const scoreColor = (score) => {
     if (score >= 80) return 'green';
     if (score >= 50) return 'orange';
@@ -57,7 +73,8 @@ const StudentScores = () => {
     <div className='section1'>
       <h1>Student Score Sheet</h1>
 
-      {/* Input Section */}
+     
+      
       <div className='section2'>
         <input className='nametag' type="text" placeholder="Student Name" value={name}  onChange={(e) => setName(e.target.value)} /> 
         <input className='scoretag' type="number" placeholder="Score" value={score} onChange={(e) => setScore(e.target.value)}  />
@@ -65,18 +82,21 @@ const StudentScores = () => {
       </div>
 
       
+      
       {students.length === 0 ? (
         <p>No students added yet.</p>
       ) : (
         <>
-          {/* Summary Stats */}
+         
+          
           <div className='display'>
             <p><strong>Total Students:</strong> {totalStudents}</p>
             <p><strong>Class Average:</strong> {averageScore}</p>
             <p><b>Top Student:</b>{topStudent.name}({topStudent.score})</p>
           </div>
 
-          {/* Student List */}
+         
+          
           <table className='mytable' border="1" >
             <thead>
               <tr>
